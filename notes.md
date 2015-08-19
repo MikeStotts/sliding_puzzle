@@ -1,9 +1,15 @@
-# Notes for the Slding Puzzle Projct
+# Notes for the Slding Puzzle Project
 
 ## Tasks
-* Creat html code page
-* Create basic JavaScript code frame
+* Create web page
+ * initial html - done
+ * common.css to css dir - done
+ * init sliding\_puzzle.css to css dir
+ * jquery.js to js dir - done
+ * jquery-ui.js to js dir - done
+ * init sliding\_puzzle.js to js dir - done
+* Create basic JavaScript code structure - done
 * JavaScript code to split image into sections
-* javaScript to randomly shuffle pieces
+* JavaScript to randomly shuffle pieces
 * Add click event handlers to pieces
 * Determine if puzzle has been solved
