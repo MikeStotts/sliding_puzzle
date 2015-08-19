@@ -9,7 +9,7 @@
  * jquery-ui.js to js dir - done
  * init sliding\_puzzle.js to js dir - done
 * Create basic JavaScript code structure - done
-* JavaScript code to split image into sections
+* JavaScript code to split image into sections - done
 * JavaScript to randomly shuffle pieces
 * Add click event handlers to pieces
 * Determine if puzzle has been solved

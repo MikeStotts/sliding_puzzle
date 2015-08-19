@@ -9,15 +9,43 @@ $(document).ready(function () {
 	    img = imgContainer.find("img");
 	    path = img.attr("src");
 	    piece = $("<div />");
-	    peiceW = Math.floor(img.width() / aspectW); 
-	    peiceH = Math.floor(img.height() / aspectH);
+	    pieceW = Math.floor(img.width() / aspectW); 
+	    pieceH = Math.floor(img.height() / aspectH);
 	    idCounter = 0;
 	    positions = [];
 	    empty = {
 	    	top: 0,
 	    	left: 0,
-	    	bottom: peiceH,
-	    	right: peiceW
+	    	bottom: pieceH,
+	    	right: pieceW
 	    };
+	    
+	    // Split puzzle into pieces
+	    for (var x = 0, y = aspectH; x < y; x++) {
+			for (var a = 0, b = aspectW; a < b; a++) {
+				var top = pieceH * x,
+				    left = pieceW * a;
+				piece.clone()
+					.attr("id", idCounter++)
+					.css({
+						width: pieceW,
+						height: pieceH,
+						position: "absolute",
+						top: top,
+						left: left,
+						backgroundImage: ["url(",
+										   path,
+										   ")"
+										 ].join(""),
+						backgroundPosition:[
+							"-", pieceW * a, "px ",
+							"-", pieceH * x, "px"
+						].join("")
+					}).appendTo(imgContainer);
+
+				positions.push({top: top, left: left});
+
+			}    
+	    }
 	    
 });
