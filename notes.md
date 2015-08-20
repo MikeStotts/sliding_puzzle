@@ -10,6 +10,10 @@
  * init sliding\_puzzle.js to js dir - done
 * Create basic JavaScript code structure - done
 * JavaScript code to split image into sections - done
-* JavaScript to randomly shuffle pieces
+* JavaScript to randomly shuffle pieces - done 
+ * Removve original image from the page - done
+ * Remove first piece fromt the pgage 
+ * Remove the irst piece from the positions array - done
+ * Shuffle pieces randdomly - done
 * Add click event handlers to pieces
 * Determine if puzzle has been solved
