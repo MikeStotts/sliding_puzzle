@@ -15,5 +15,8 @@
  * Remove first piece fromt the pgage 
  * Remove the irst piece from the positions array - done
  * Shuffle pieces randdomly - done
-* Add click event handlers to pieces
+* Add click event handlers to pieces - done
+ * Make the puzzle pieces draggable using Jquery UI - done
+ * Configure the draggables so that only next to the empty space can be moved - done
+ * Configure the draggables sp that they cam only be moved into the empty space - done
 * Determine if puzzle has been solved

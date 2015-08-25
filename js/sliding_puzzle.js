@@ -18,7 +18,8 @@ $(document).ready(function () {
 	    	left: 0,
 	    	bottom: pieceH,
 	    	right: pieceW
-	    };
+	    },
+	    previous = {};
 	    
     // Split puzzle into pieces
     for (var x = 0, y = aspectH; x < y; x++) {
@@ -86,5 +87,80 @@ $(document).ready(function () {
 		empty.top = 0;				
 		empty.left = 0;
 		
-	});  
+		container.find("#ui").find("p").not("#time").remove();	
+
+		pieces.draggable({
+			containment: "parent",
+			grid: [pieceW, pieceH],
+			
+			start: function (e, ui) {
+				var current = getPosition(ui.helper);
+				if (current.left === empty.left) {
+					ui.helper.draggable("option", "axis", "y");				
+				} else if (current.top === empty.top) {
+					ui.helper.draggable("option", "axis", "x");				
+				} else {
+					ui.helper.trigger("mouseup");
+					return false;
+				}
+				
+				if (current.bottom < empty.top ||
+					current.top > empty.bottom ||
+					current.left > empty.right ||
+					current.right < empty.left)
+				{
+					ui.helper.trigger("mouseup");
+					return false;
+				}
+					
+				previous.top = current.top;
+				previous.left = current.left;
+			},
+			
+			drag: function (e, ui) {
+				var current = getPosition(ui.helper);
+				ui.helper.draggable("option", "revert", false);				
+				if (current.top === empty.top && current.left === empty.left) {
+					ui.helper.trigger("mouseup");
+					return false;
+				} 
+	
+				if (current.top > empty.bottom ||
+				current.bottom < empty.top ||
+				current.left > empty.right ||
+				current.right < empty.left)
+				{
+					ui.helper.trigger("mouseup")
+						.css({
+							top: previous.top,
+							left: previous.left
+						});
+					return false;
+				}
+			
+			},
+			
+			stop: function (e, ui) {
+				var current = getPosition(ui.helper);
+				if (current.top === empty.top & current.left === empty.left) {
+					empty.top = previous.top;
+					empty.left = previous.left;
+					empty.bottom = previous.top + pieceH;
+					empty.right = previous.left + pieceW;
+				} 
+				
+			}
+		});
+	
+		function getPosition(e1) {
+			return {
+				top: parseInt(e1.css("top")),
+				bottom: parseInt(e1.css("top")) + pieceH,
+				left: parseInt(e1.css("left")),
+				right: parseInt(e1.css("left")) + pieceW
+			}	
+		}	
+		
+	});
+
 });
